@@ -48,6 +48,11 @@ public class MainActivityEvents implements View.OnClickListener, FirebaseAdminLi
 
     @Override
     public void loginIsOk(boolean ok) {
+        if(ok==true){
+            Intent intent = new Intent(this.getMainActivity(),SecondActivity.class);
+            mainActivity.startActivity(intent);
+            mainActivity.finish();
+        }
 
     }
 
