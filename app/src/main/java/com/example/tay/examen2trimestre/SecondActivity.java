@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.tay.examen2trimestre.fragments.InfoUsers;
 import com.google.android.gms.maps.SupportMapFragment;
 
 public class SecondActivity extends AppCompatActivity
@@ -23,6 +24,8 @@ public class SecondActivity extends AppCompatActivity
     private SecondActivityEvents secondActivityEvents;
     //Variable del map fragment
     private SupportMapFragment mapFragment;
+    //creamos la variable de fragment infoUsers
+    private InfoUsers infoFragment;
 
 
 
@@ -126,5 +129,21 @@ public class SecondActivity extends AppCompatActivity
 
         }
 
+    }
+
+    public SupportMapFragment getMapFragment() {
+        return mapFragment;
+    }
+
+    public void setMapFragment(SupportMapFragment mapFragment) {
+        this.mapFragment = mapFragment;
+    }
+
+    public InfoUsers getInfoFragment() {
+        return infoFragment;
+    }
+
+    public void setInfoFragment(InfoUsers infoFragment) {
+        this.infoFragment = infoFragment;
     }
 }

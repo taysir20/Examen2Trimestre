@@ -1,10 +1,13 @@
 package com.example.tay.examen2trimestre;
 
+import android.support.v4.app.FragmentTransaction;
+
 import com.example.tay.examen2trimestre.entity.User;
 import com.example.tay.examen2trimestre.firebase.FirebaseAdminListener;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.GenericTypeIndicator;
@@ -15,7 +18,7 @@ import java.util.ArrayList;
  * Created by tay on 19/2/18.
  */
 
-public class SecondActivityEvents implements FirebaseAdminListener, OnMapReadyCallback {
+public class SecondActivityEvents implements FirebaseAdminListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private SecondActivity secondActivity;
     //Variable google Map que usaremos después para añadir los pines
     private GoogleMap googleMap;
@@ -75,8 +78,20 @@ public class SecondActivityEvents implements FirebaseAdminListener, OnMapReadyCa
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
+        this.googleMap.setOnMarkerClickListener(this);//decimos al mapa cuál es su escuchador para cuando pulsemos los pines
 
     }
 
 
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        this.secondActivity.getInfoFragment().setDataUser((User)marker.getTag());
+        FragmentTransaction transition = this.secondActivity.getSupportFragmentManager().beginTransaction();
+        transition.show(this.secondActivity.getMapFragment());
+        transition.commit();
+
+
+
+        return false;
+    }
 }
