@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.example.tay.examen2trimestre.firebase.FirebaseAdmin;
@@ -48,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
     private MainActivityEvents mainActivityEvents;
     // Creamos variable listener firebase
     private FirebaseAdminListener firebaseAdminListener;
+    //Variable para la animación
+    private Animation facebookAnimarion;
+
 
 
     @Override
@@ -108,6 +113,21 @@ public class MainActivity extends AppCompatActivity {
         signInButton.setSize(SignInButton.SIZE_STANDARD);
         //Seteamos el escuchador del botón de google que será el MainActivityEvents
         signInButton.setOnClickListener(this.getMainActivityEvents());
+
+
+
+        /*
+        A través de la clase AnimationUtils podemos asignar a un elemento una animación que tengamos creada
+        en 'anim'. Para ello haremos uso de su método loadAnimation para cargarla y la guardaremos
+         en una variable de tipo animation para luego llamar a startAnimation desde el onclick del events y pasarsela como parámetro
+        para asignarsela al elemento.
+        */
+        //recordamos que el contexto debe de ser cualquierla que actue de contenedor de este componente por lo tanto nos vale el propio MainActivity
+        this.setFacebookAnimarion(AnimationUtils.loadAnimation(this,R.anim.facebook_anim));
+
+        //Seteamos el listener de la animación que será nuestro MainActivityEvents
+        this.loginButton.startAnimation(  this.getFacebookAnimarion());
+
 
 
     }
@@ -234,6 +254,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void setFirebaseAdminListener(FirebaseAdminListener firebaseAdminListener) {
         this.firebaseAdminListener = firebaseAdminListener;
+    }
+
+    public Animation getFacebookAnimarion() {
+        return facebookAnimarion;
+    }
+
+    public void setFacebookAnimarion(Animation facebookAnimarion) {
+        this.facebookAnimarion = facebookAnimarion;
     }
 }
 
