@@ -15,9 +15,11 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -116,9 +118,18 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 64206) {
             callbackManager.onActivityResult(requestCode, resultCode, data);
             super.onActivityResult(requestCode, resultCode, data);
-        }
-
+        //Si es google
+    }else if(requestCode == 1){
+        // The Task returned from this call is always completed, no need to attach
+        // a listener.
+        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+        //llamamos al método handleSingResult pasándole por parámetro el objeto siginAccount obtenido del task
+        // El GoogleSignInAccount objeto contiene información sobre el usuario que inició sesión, como el nombre del usuario.
+        handleSignInResult(task);
     }
+
+
+}
 
     /*
     Método que se encarga de loguear con firebase la cuenta facebook
@@ -146,6 +157,21 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    //Método que se encarga de devolvernos un resultado si se ha logueado correctamente o no el usuario por google
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("ERROR LOGUEO GOOGLE", "signInResult:failed code=" + e.getStatusCode());
+
+        }
+    }
+
 
     public MainActivityEvents getMainActivityEvents() {
         return mainActivityEvents;
