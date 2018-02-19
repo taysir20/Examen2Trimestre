@@ -15,8 +15,10 @@ import android.view.MenuItem;
 
 public class SecondActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    //Variable fab
     private  FloatingActionButton fab;
+    //Declaramos el SecondActivityEvents
+    private SecondActivityEvents secondActivityEvents;
 
 
 
@@ -27,6 +29,10 @@ public class SecondActivity extends AppCompatActivity
         setContentView(R.layout.activity_second);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        this.secondActivityEvents = new SecondActivityEvents(this);
+        DataHolder.MyDataHolder.getFirebaseAdmin().setFirebaseAdminListener(secondActivityEvents);
+
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
