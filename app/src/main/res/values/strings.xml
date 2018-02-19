@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Examen2Trimestre</string>
+    <string name="facebook_app_id"></string> <!-- string que contiene el id de la aplicación de facebook-->git
 </resources>
