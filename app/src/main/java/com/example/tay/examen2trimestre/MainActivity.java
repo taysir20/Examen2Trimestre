@@ -1,5 +1,6 @@
 package com.example.tay.examen2trimestre;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -56,4 +57,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    //Método onActivity al que llegan las llamadas de facebook y twitter.
+    /*
+    Se ejecuta cuando recibe respuestas desde fuera de la aplicación, es propio de todos los activities.
+    Por lo tanto cuando se realiza una llamada al pinchar el btn de facebook se devuelve una respuesta por aquí y de esta manera
+    dependiendo de la respuesta entrará a los métodos del registerCallBack del loginbutton
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //Si es facebook
+        if (requestCode == 64206) {
+            callbackManager.onActivityResult(requestCode, resultCode, data);
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+
+    }
+}
+
 }
