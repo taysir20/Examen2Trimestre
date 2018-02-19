@@ -40,10 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     //Definimos el botón de logueo de google para asociarlo a su componente visual
     private SignInButton signInButton;
-
-
-
-
+    //Creamos una variable de tipo Mainctivity Events
+    private MainActivityEvents mainActivityEvents;
 
 
     @Override
@@ -52,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Inicializamos el firebaseAdmin
         firebaseAdmin = new FirebaseAdmin();
+        //Instanciamos el mainacitivty events que recibe por parámetro el mainActivity
+        mainActivityEvents = new MainActivityEvents(this);
+
 
         // Crea un administrador de devoluciones de llamada que gestione las respuestas de inicio de sesión.
         callbackManager = CallbackManager.Factory.create();
@@ -84,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
         ///////////////LOGIN GOOGLE/////////////
         /*
         Configuración el inicio de sesión de Google para solicitar los datos de usuario requeridos por su aplicación
@@ -98,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
         //Asociamos al siginButton su componente visual y seteamos su tamaño
         signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
-
+        //Seteamos el escuchador del botón de google que será el MainActivityEvents
+        signInButton.setOnClickListener(this.getMainActivityEvents());
 
 
     }
@@ -126,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         DataHolder.MyDataHolder.getFirebaseAdmin().getmAuth().signInWithCredential(credential)
-                .addOnCompleteListener(MainActivity.this,  new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -146,7 +147,21 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    public MainActivityEvents getMainActivityEvents() {
+        return mainActivityEvents;
+    }
 
+    public void setMainActivityEvents(MainActivityEvents mainActivityEvents) {
+        this.mainActivityEvents = mainActivityEvents;
+    }
+
+    public GoogleSignInClient getmGoogleSignInClient() {
+        return mGoogleSignInClient;
+    }
+
+    public void setmGoogleSignInClient(GoogleSignInClient mGoogleSignInClient) {
+        this.mGoogleSignInClient = mGoogleSignInClient;
+    }
 }
 
 
