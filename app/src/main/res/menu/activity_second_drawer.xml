@@ -32,6 +32,21 @@
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Send" />
+            <item
+                android:id="@+id/action0"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Elemento1" />
+
+            <item
+                android:id="@+id/action_bar_subtitle"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Elemento2" />
+
+            <item
+                android:id="@+id/action_bar_title"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Elemento3" />
+
         </menu>
     </item>
 
