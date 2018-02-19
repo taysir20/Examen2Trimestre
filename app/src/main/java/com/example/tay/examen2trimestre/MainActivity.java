@@ -17,6 +17,7 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAdmin firebaseAdmin;
     //Creamos una variable de google sign in:
     private GoogleSignInClient mGoogleSignInClient;
+    //Definimos el botón de logueo de google para asociarlo a su componente visual
+    private SignInButton signInButton;
+
 
 
 
@@ -90,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         //Se debe de instanciar un objeto de tipo sigin client de google con el googleSignInoptions que hemos creado
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        //Asociamos al siginButton su componente visual y seteamos su tamaño
+        signInButton = findViewById(R.id.sign_in_button);
+        signInButton.setSize(SignInButton.SIZE_STANDARD);
 
 
 
