@@ -14,6 +14,9 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -32,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     LoginButton loginButton;
     //Creamos una variable de tipo FirebaseAdmin
     private FirebaseAdmin firebaseAdmin;
+    //Creamos una variable de google sign in:
+    private GoogleSignInClient mGoogleSignInClient;
+
 
 
 
@@ -72,6 +78,19 @@ public class MainActivity extends AppCompatActivity {
                 // App code
             }
         });
+
+
+
+        ///////////////LOGIN GOOGLE/////////////
+        /*
+        Configuración el inicio de sesión de Google para solicitar los datos de usuario requeridos por su aplicación
+         */
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        //Se debe de instanciar un objeto de tipo sigin client de google con el googleSignInoptions que hemos creado
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
 
 
     }
