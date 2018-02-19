@@ -27,4 +27,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     //Agregamos la implementación del SDK de Facebook
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+    //Implementaciones auntentificación facebook, core, database
+    implementation 'com.google.firebase:firebase-auth:11.8.0'
+    compile 'com.google.firebase:firebase-core:11.8.0'
+    compile 'com.google.firebase:firebase-database:11.8.0'
+
 }
+//Implementación de google service
+apply plugin: 'com.google.gms.google-services'
