@@ -1,6 +1,7 @@
 package com.example.tay.examen2trimestre;
 
 
+import com.example.tay.examen2trimestre.SQLite.DatabaseHandler;
 import com.example.tay.examen2trimestre.firebase.FirebaseAdmin;
 
 /**
@@ -11,7 +12,7 @@ public class DataHolder {
 
     public static class MyDataHolder {
         public static FirebaseAdmin firebaseAdmin;
-        //public static DatabaseHandler databaseHandler;
+        public static DatabaseHandler databaseHandler;
 
 
         public static FirebaseAdmin getFirebaseAdmin() {
@@ -21,7 +22,7 @@ public class DataHolder {
         public static void setFirebaseAdmin(FirebaseAdmin firebaseAdmin) {
             MyDataHolder.firebaseAdmin = firebaseAdmin;
         }
-    /*
+
         public static DatabaseHandler getDatabaseHandler() {
             return databaseHandler;
         }
@@ -29,7 +30,7 @@ public class DataHolder {
         public static void setDatabaseHandler(DatabaseHandler databaseHandler) {
             MyDataHolder.databaseHandler = databaseHandler;
         }
-    */
+
     }
 
 

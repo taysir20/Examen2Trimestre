@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
+import com.example.tay.examen2trimestre.SQLite.DatabaseHandler;
 import com.example.tay.examen2trimestre.firebase.FirebaseAdmin;
 import com.example.tay.examen2trimestre.firebase.FirebaseAdminListener;
 import com.facebook.AccessToken;
@@ -52,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAdminListener firebaseAdminListener;
     //Variable para la animación
     private Animation facebookAnimarion;
+    //Creamos una variable del sqlite
+    private DatabaseHandler databaseHandler;
+
 
 
 
@@ -65,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
         mainActivityEvents = new MainActivityEvents(this);
         //Instanciamos el listener de firebaseAdminListener que será el mainActivityEvents
         this.setFirebaseAdminListener(getMainActivityEvents());
+
+        // instanciamos sqlite
+        databaseHandler = new DatabaseHandler(this);
+        DataHolder.MyDataHolder.databaseHandler= databaseHandler;
+
 
 
         // Crea un administrador de devoluciones de llamada que gestione las respuestas de inicio de sesión.
