@@ -3,11 +3,15 @@ package com.example.tay.examen2trimestre;
 import android.content.Intent;
 import android.view.View;
 
+import com.example.tay.examen2trimestre.firebase.FirebaseAdmin;
+import com.example.tay.examen2trimestre.firebase.FirebaseAdminListener;
+import com.google.firebase.database.DataSnapshot;
+
 /**
  * Created by tay on 19/2/18.
  */
 
-public class MainActivityEvents implements View.OnClickListener {
+public class MainActivityEvents implements View.OnClickListener, FirebaseAdminListener{
     private MainActivity mainActivity;
 
     public MainActivityEvents(MainActivity mainActivity) {
@@ -40,5 +44,25 @@ public class MainActivityEvents implements View.OnClickListener {
 
     public void setMainActivity(MainActivity mainActivity) {
         this.mainActivity = mainActivity;
+    }
+
+    @Override
+    public void loginIsOk(boolean ok) {
+
+    }
+
+    @Override
+    public void registerOk(boolean ok) {
+
+    }
+
+    @Override
+    public void signOutOk(boolean ok) {
+
+    }
+
+    @Override
+    public void downloadBranch(String branch, DataSnapshot dataSnapshot) {
+
     }
 }

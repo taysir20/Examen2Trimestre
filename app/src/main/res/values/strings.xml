@@ -4,4 +4,10 @@
     <string name="fb_login_protocol_scheme">fb2011916702414553</string>  <!--añadimos el protocol scheme-->
     <!-- Añadimos el CredentialTokenGoogle necesario para el logueo con google-->
     <string name="CredentialTokenGoogle">695657735087-69icqeoqk64thv2im4qlsokeeh9a3bnt.apps.googleusercontent.com</string>
+    <string name="title_activity_second">SecondActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

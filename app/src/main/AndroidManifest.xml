@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tay.examen2trimestre">
 
-    <uses-permission android:name="android.permission.INTERNET"/><!--que proporcionar los permisos de internet-->
+    <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- que proporcionar los permisos de internet -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,16 +19,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/><!--meta data que que apunta
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <!--
+meta data que que apunta
         al archivo string
-        y que contendrá el id de la aplicación de facebook-->
+        y que contendrá el id de la aplicación de facebook
+        -->
+
 
         <!--
 META-DATA que hace referencia a la API que necesesita usar el SDK para nuestra aplicación de facebook
-Cada app que creemos en facebook developers tendrá que ir asociada a una id-->
+Cada app que creemos en facebook developers tendrá que ir asociada a una id
+        -->
 
 
-<!-- Para descargar imagenes y vídeos de facebook añadimos la siguiente etiqueta provider -->
+        <!-- Para descargar imagenes y vídeos de facebook añadimos la siguiente etiqueta provider -->
         <provider
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider194058234670030"
@@ -37,8 +46,10 @@ Cada app que creemos en facebook developers tendrá que ir asociada a una id-->
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-
-
+        <activity
+            android:name=".SecondActivity"
+            android:label="@string/title_activity_second"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

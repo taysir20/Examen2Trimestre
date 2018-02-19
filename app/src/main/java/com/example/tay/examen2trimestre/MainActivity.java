@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.tay.examen2trimestre.firebase.FirebaseAdmin;
+import com.example.tay.examen2trimestre.firebase.FirebaseAdminListener;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     private SignInButton signInButton;
     //Creamos una variable de tipo Mainctivity Events
     private MainActivityEvents mainActivityEvents;
+    // Creamos variable listener firebase
+    private FirebaseAdminListener firebaseAdminListener;
 
 
     @Override
@@ -55,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         firebaseAdmin = new FirebaseAdmin();
         //Instanciamos el mainacitivty events que recibe por parámetro el mainActivity
         mainActivityEvents = new MainActivityEvents(this);
+        //Instanciamos el listener de firebaseAdminListener que será el mainActivityEvents
+        this.setFirebaseAdminListener(getMainActivityEvents());
 
 
         // Crea un administrador de devoluciones de llamada que gestione las respuestas de inicio de sesión.
@@ -145,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = DataHolder.MyDataHolder.getFirebaseAdmin().getmAuth().getCurrentUser();
+                            firebaseAdminListener.loginIsOk(true);
                         } else {
 
                             // If sign in fails, display a message to the user.
@@ -163,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            firebaseAuthWithGoogle(account);
 
 
         } catch (ApiException e) {
@@ -187,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
 
                             FirebaseUser user =   DataHolder.MyDataHolder.getFirebaseAdmin().getmAuth().getCurrentUser();
+                            firebaseAdminListener.loginIsOk(true);
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -218,6 +226,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void setmGoogleSignInClient(GoogleSignInClient mGoogleSignInClient) {
         this.mGoogleSignInClient = mGoogleSignInClient;
+    }
+
+    public FirebaseAdminListener getFirebaseAdminListener() {
+        return firebaseAdminListener;
+    }
+
+    public void setFirebaseAdminListener(FirebaseAdminListener firebaseAdminListener) {
+        this.firebaseAdminListener = firebaseAdminListener;
     }
 }
 
