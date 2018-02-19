@@ -32,6 +32,10 @@ dependencies {
     compile 'com.google.firebase:firebase-core:11.8.0'
     compile 'com.google.firebase:firebase-database:11.8.0'
 
+    //Autentificación por google
+    compile 'com.google.android.gms:play-services-auth:11.8.0'
+
+
 }
 //Implementación de google service
 apply plugin: 'com.google.gms.google-services'
