@@ -34,7 +34,7 @@ public class MainActivityEvents implements View.OnClickListener, FirebaseAdminLi
         Intent signInIntent = this.mainActivity.getmGoogleSignInClient().getSignInIntent();
         //Le tenemos que pasar un request code para que al devovler una respuesta al onActivityResult le llegue este requestcode.
         //Ponemos por ejemplo 1
-        mainActivity.startActivityForResult(signInIntent, 1);
+        mainActivity.startActivityForResult(signInIntent, 2);
     }
 
 

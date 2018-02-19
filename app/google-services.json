@@ -1,25 +1,21 @@
 {
   "project_info": {
-    "project_number": "258465787192",
-    "firebase_url": "https://examen2trimestre-f53ca.firebaseio.com",
-    "project_id": "examen2trimestre-f53ca",
-    "storage_bucket": "examen2trimestre-f53ca.appspot.com"
+    "project_number": "292476590194",
+    "firebase_url": "https://examenandroid2-8f9c6.firebaseio.com",
+    "project_id": "examenandroid2-8f9c6",
+    "storage_bucket": "examenandroid2-8f9c6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:258465787192:android:3adfd5ecea540ef6",
+        "mobilesdk_app_id": "1:292476590194:android:3adfd5ecea540ef6",
         "android_client_info": {
           "package_name": "com.example.tay.examen2trimestre"
         }
       },
       "oauth_client": [
         {
-          "client_id": "258465787192-qkbdv4931ptuciaovmhe5u9l4vv53rpp.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "258465787192-v9gs14uacb6hfo6pn6ii36lg4hiap30m.apps.googleusercontent.com",
+          "client_id": "292476590194-jsf6peov1mfim4g8v0o86ba98oeln1bl.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.tay.examen2trimestre",
@@ -27,13 +23,13 @@
           }
         },
         {
-          "client_id": "258465787192-9ue3lo7e1cr4eg03hj6lpp069ao59clc.apps.googleusercontent.com",
+          "client_id": "292476590194-ue3p21l4d55n8si9go7pkmencss295v6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCrCo65YQxMhfkz6FuLGspXugEOLFjbfuU"
+          "current_key": "AIzaSyAugsMiHkQl6CjMyFegiTjhjV91EY3gdUw"
         }
       ],
       "services": {
@@ -44,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "258465787192-qkbdv4931ptuciaovmhe5u9l4vv53rpp.apps.googleusercontent.com",
+              "client_id": "292476590194-ue3p21l4d55n8si9go7pkmencss295v6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

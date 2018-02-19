@@ -25,8 +25,8 @@
     <fragment
         android:id="@+id/infoUsers"
         android:name="com.example.tay.examen2trimestre.fragments.InfoUsers"
-        android:layout_width="165dp"
-        android:layout_height="87dp"
+        android:layout_width="291dp"
+        android:layout_height="129dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"

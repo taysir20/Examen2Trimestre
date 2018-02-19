@@ -155,13 +155,16 @@ public class MainActivity extends AppCompatActivity {
             callbackManager.onActivityResult(requestCode, resultCode, data);
             super.onActivityResult(requestCode, resultCode, data);
             //Si es google
-        } else if (requestCode == 1) {
+        } else if (requestCode == 2) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
+                System.out.println("------------------>>>>>>>>>>>>>>>>>>><ON ACTIVITY RESULT 1");
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            System.out.println("------------------>>>>>>>>>>>>>>>>>>><ON ACTIVITY RESULT 2");
             //llamamos al método handleSingResult pasándole por parámetro el objeto siginAccount obtenido del task
             // El GoogleSignInAccount objeto contiene información sobre el usuario que inició sesión, como el nombre del usuario.
             handleSignInResult(task);
+            System.out.println("------------------>>>>>>>>>>>>>>>>>>><ON ACTIVITY RESULT 3");
         }
 
 
@@ -203,9 +206,11 @@ public class MainActivity extends AppCompatActivity {
 
     //Método que se encarga de devolvernos un resultado si se ha logueado correctamente o no el usuario por google
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        System.out.println("------------------>>>>>>>>>>>>>>>>>>><ON ACTIVITY RESULT 4");
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             firebaseAuthWithGoogle(account);
+            System.out.println("--------------->>>>>>>>>>>>>>>>>>>>>>holaaaaaaaaa");
 
 
         } catch (ApiException e) {

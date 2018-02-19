@@ -3,7 +3,7 @@
     <string name="facebook_app_id">285717638628075</string> <!-- string que contiene el id de la aplicación de facebook-->
     <string name="fb_login_protocol_scheme">fb2011916702414553</string>  <!--añadimos el protocol scheme-->
     <!-- Añadimos el CredentialTokenGoogle necesario para el logueo con google-->
-    <string name="CredentialTokenGoogle">258465787192-qkbdv4931ptuciaovmhe5u9l4vv53rpp.apps.googleusercontent.com</string>
+    <string name="CredentialTokenGoogle">292476590194-ue3p21l4d55n8si9go7pkmencss295v6.apps.googleusercontent.com</string>
     <string name="title_activity_second">SecondActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
