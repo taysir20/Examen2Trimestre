@@ -13,12 +13,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.SupportMapFragment;
+
 public class SecondActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     //Variable fab
     private  FloatingActionButton fab;
     //Declaramos el SecondActivityEvents
     private SecondActivityEvents secondActivityEvents;
+    //Variable del map fragment
+    private SupportMapFragment mapFragment;
+
 
 
 
@@ -44,6 +49,11 @@ public class SecondActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.fragmentMapa);
+        //Se setea el escuchador del mapa que es el events del second activity pues es quién lo implementa
+        mapFragment.getMapAsync(secondActivityEvents);
 
 
         //LLamamos al método de firebase que descargará los datos de la rama que especificamos
