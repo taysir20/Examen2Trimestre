@@ -44,6 +44,11 @@ public class SecondActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        //LLamamos al método de firebase que descargará los datos de la rama que especificamos
+        DataHolder.MyDataHolder.getFirebaseAdmin().downloadDataAndObserveBranchChanges("Usuarios");
+
     }
 
     @Override
