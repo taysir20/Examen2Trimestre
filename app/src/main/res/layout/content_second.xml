@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <fragment
-        android:id="@+id/fragment2"
+        android:id="@+id/infoUsers"
         android:name="com.example.tay.examen2trimestre.fragments.InfoUsers"
         android:layout_width="165dp"
         android:layout_height="87dp"

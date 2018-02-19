@@ -3,6 +3,7 @@ package com.example.tay.examen2trimestre;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -61,6 +62,16 @@ public class SecondActivity extends AppCompatActivity
 
         //LLamamos al método de firebase que descargará los datos de la rama que especificamos
         DataHolder.MyDataHolder.getFirebaseAdmin().downloadDataAndObserveBranchChanges("Usuarios");
+
+        //Instanciamos el infoFragment
+        this.infoFragment = (InfoUsers) getSupportFragmentManager()
+                .findFragmentById(R.id.infoUsers);
+
+        //Con el fragment transaction ocultamos inicialmente el infoUser
+        FragmentTransaction transition = this.getSupportFragmentManager().beginTransaction();
+        transition.hide(this.getInfoFragment());
+        transition.show(this.getMapFragment());
+        transition.commit();
 
     }
 
