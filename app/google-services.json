@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "258465787192",
+    "firebase_url": "https://examen2trimestre-f53ca.firebaseio.com",
+    "project_id": "examen2trimestre-f53ca",
+    "storage_bucket": "examen2trimestre-f53ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258465787192:android:3adfd5ecea540ef6",
+        "android_client_info": {
+          "package_name": "com.example.tay.examen2trimestre"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "258465787192-i6fcrno391bfe8q068ee7hb35o5jdtk9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tay.examen2trimestre",
+            "certificate_hash": "c9e206c1a68424ea2f1ff22dd66b37c7646d143f"
+          }
+        },
+        {
+          "client_id": "258465787192-9ue3lo7e1cr4eg03hj6lpp069ao59clc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrCo65YQxMhfkz6FuLGspXugEOLFjbfuU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "258465787192-9ue3lo7e1cr4eg03hj6lpp069ao59clc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
