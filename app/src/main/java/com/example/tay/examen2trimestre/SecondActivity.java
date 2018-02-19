@@ -43,7 +43,10 @@ public class SecondActivity extends AppCompatActivity
         DataHolder.MyDataHolder.getFirebaseAdmin().setFirebaseAdminListener(secondActivityEvents);
 
 
+
+
         fab = (FloatingActionButton) findViewById(R.id.fab);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -54,15 +57,18 @@ public class SecondActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+
+        //Instanciamos la variable mapFragment con su componente es decir linkamos la parte visual del fragment mapa
+        //con su código
+
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragmentMapa);
         //Se setea el escuchador del mapa que es el events del second activity pues es quién lo implementa
         mapFragment.getMapAsync(secondActivityEvents);
 
-
         //LLamamos al método de firebase que descargará los datos de la rama que especificamos
         DataHolder.MyDataHolder.getFirebaseAdmin().downloadDataAndObserveBranchChanges("Usuarios");
-
         //Instanciamos el infoFragment
         this.infoFragment = (InfoUsers) getSupportFragmentManager()
                 .findFragmentById(R.id.infoUsers);

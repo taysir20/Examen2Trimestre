@@ -38,6 +38,8 @@ dependencies {
     compile 'com.google.android.gms:play-services-auth:11.8.0'
     //Implementamos el MapActivity
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
+    //Librería Firebase para incorporar el crash reporting
+    implementation 'com.google.firebase:firebase-crash:11.8.0'
 
 
 }

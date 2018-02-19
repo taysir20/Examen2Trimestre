@@ -31,6 +31,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.crash.FirebaseCrash;
 
 import java.util.Arrays;
 
@@ -57,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseHandler databaseHandler;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,39 +71,42 @@ public class MainActivity extends AppCompatActivity {
 
         // instanciamos sqlite
         databaseHandler = new DatabaseHandler(this);
-        DataHolder.MyDataHolder.databaseHandler= databaseHandler;
+        DataHolder.MyDataHolder.databaseHandler = databaseHandler;
 
-
-
-        // Crea un administrador de devoluciones de llamada que gestione las respuestas de inicio de sesión.
-        callbackManager = CallbackManager.Factory.create();
-        loginButton = (LoginButton) findViewById(R.id.login_button);
-        //Añadimos los permisos que queramos solicitar al usuario en el momento en el que se loguea
-        loginButton.setReadPermissions(Arrays.asList
-                ("public_profile", "user_friends", "email", "user_photos", "  user_birthday", "read_custom_friendlists"));
+        try {
+            // Crea un administrador de devoluciones de llamada que gestione las respuestas de inicio de sesión.
+            callbackManager = CallbackManager.Factory.create();
+            loginButton = (LoginButton) findViewById(R.id.login_button);
+            //Añadimos los permisos que queramos solicitar al usuario en el momento en el que se loguea
+            loginButton.setReadPermissions(Arrays.asList
+                    ("public_profile", "user_friends", "email", "user_photos", "  user_birthday", "read_custom_friendlists"));
 
         /*
            A través del registercallbaxk registraremos las llamadas a facebook y si si son exitosas o dan error se llamará a uno de estos
            métodos
          */
 
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                //Método de firebase que nos inicia sesión en firebase con el login de facebook
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
+            loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+                @Override
+                public void onSuccess(LoginResult loginResult) {
+                    //Método de firebase que nos inicia sesión en firebase con el login de facebook
+                    handleFacebookAccessToken(loginResult.getAccessToken());
+                }
 
-            @Override
-            public void onCancel() {
-                // App code
-            }
+                @Override
+                public void onCancel() {
+                    // App code
+                }
 
-            @Override
-            public void onError(FacebookException exception) {
-                // App code
-            }
-        });
+                @Override
+                public void onError(FacebookException exception) {
+                    // App code
+                }
+            });
+        } catch (ExceptionInInitializerError e) {
+            //1ºCrash Reporting
+            FirebaseCrash.report(e);
+        }
 
 
         ///////////////LOGIN GOOGLE/////////////
@@ -132,11 +134,10 @@ public class MainActivity extends AppCompatActivity {
         para asignarsela al elemento.
         */
         //recordamos que el contexto debe de ser cualquierla que actue de contenedor de este componente por lo tanto nos vale el propio MainActivity
-        this.setFacebookAnimarion(AnimationUtils.loadAnimation(this,R.anim.facebook_anim));
+        this.setFacebookAnimarion(AnimationUtils.loadAnimation(this, R.anim.facebook_anim));
 
         //Seteamos el listener de la animación que será nuestro MainActivityEvents
-        this.loginButton.startAnimation(  this.getFacebookAnimarion());
-
+        this.loginButton.startAnimation(this.getFacebookAnimarion());
 
 
     }
@@ -153,45 +154,51 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 64206) {
             callbackManager.onActivityResult(requestCode, resultCode, data);
             super.onActivityResult(requestCode, resultCode, data);
-        //Si es google
-    }else if(requestCode == 1){
-        // The Task returned from this call is always completed, no need to attach
-        // a listener.
-        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-        //llamamos al método handleSingResult pasándole por parámetro el objeto siginAccount obtenido del task
-        // El GoogleSignInAccount objeto contiene información sobre el usuario que inició sesión, como el nombre del usuario.
-        handleSignInResult(task);
+            //Si es google
+        } else if (requestCode == 1) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            //llamamos al método handleSingResult pasándole por parámetro el objeto siginAccount obtenido del task
+            // El GoogleSignInAccount objeto contiene información sobre el usuario que inició sesión, como el nombre del usuario.
+            handleSignInResult(task);
+        }
+
+
     }
-
-
-}
 
     /*
     Método que se encarga de loguear con firebase la cuenta facebook
     */
     private void handleFacebookAccessToken(AccessToken token) {
+        try{
+            AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+            DataHolder.MyDataHolder.getFirebaseAdmin().getmAuth().signInWithCredential(credential)
+                    .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                FirebaseUser user = DataHolder.MyDataHolder.getFirebaseAdmin().getmAuth().getCurrentUser();
+                                firebaseAdminListener.loginIsOk(true);
+                            } else {
 
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        DataHolder.MyDataHolder.getFirebaseAdmin().getmAuth().signInWithCredential(credential)
-                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = DataHolder.MyDataHolder.getFirebaseAdmin().getmAuth().getCurrentUser();
-                            firebaseAdminListener.loginIsOk(true);
-                        } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w("Logueo", "signInWithCredential:failure", task.getException());
+                                Toast.makeText(MainActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                                //updateUI(null);
+                            }
 
-                            // If sign in fails, display a message to the user.
-                            Log.w("Logueo", "signInWithCredential:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
+                            // ...
                         }
+                    });
+        }catch(FacebookException e){
+            //3ºCrash Reporting
+            FirebaseCrash.report(e);
+        }
 
-                        // ...
-                    }
-                });
+
     }
 
     //Método que se encarga de devolvernos un resultado si se ha logueado correctamente o no el usuario por google
@@ -205,6 +212,8 @@ public class MainActivity extends AppCompatActivity {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("ERROR LOGUEO GOOGLE", "signInResult:failed code=" + e.getStatusCode());
+            //2ºCrash Reporting
+            FirebaseCrash.report(e);
 
         }
     }
@@ -222,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
 
-                            FirebaseUser user =   DataHolder.MyDataHolder.getFirebaseAdmin().getmAuth().getCurrentUser();
+                            FirebaseUser user = DataHolder.MyDataHolder.getFirebaseAdmin().getmAuth().getCurrentUser();
                             firebaseAdminListener.loginIsOk(true);
 
                         } else {
@@ -238,7 +247,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
 
     public MainActivityEvents getMainActivityEvents() {
