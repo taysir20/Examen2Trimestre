@@ -2,4 +2,6 @@
     <string name="app_name">Examen2Trimestre</string>
     <string name="facebook_app_id">285717638628075</string> <!-- string que contiene el id de la aplicación de facebook-->
     <string name="fb_login_protocol_scheme">fb2011916702414553</string>  <!--añadimos el protocol scheme-->
+    <!-- Añadimos el CredentialTokenGoogle necesario para el logueo con google-->
+    <string name="CredentialTokenGoogle">695657735087-69icqeoqk64thv2im4qlsokeeh9a3bnt.apps.googleusercontent.com</string>
 </resources>
